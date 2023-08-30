@@ -13,7 +13,7 @@ public class CSVReaderService {
 	try {		
 	
 		List<String> data = Files.readAllLines(path);
-			
+		data.remove(0);	
 		data.forEach(lineOfData -> {
             String[] recordData = lineOfData.split(",");
             if (recordData.length == 2) {
