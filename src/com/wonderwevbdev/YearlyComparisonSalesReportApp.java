@@ -2,7 +2,7 @@ package com.wonderwevbdev;
 
 import java.util.List;
 import java.util.Map;
-
+import java.util.Optional;
 import com.wonderwebdev.domain.SalesRecord;
 import com.wonderwebdev.services.CSVReaderService;
 import com.wonderwebdev.services.SalesAnalyzerService;
@@ -26,13 +26,13 @@ public class YearlyComparisonSalesReportApp {
 
     public static void processSalesData(String modelName, List<SalesRecord> records) {
         Map<Integer, Integer> yearlySales = SalesAnalyzerService.getYearlySales(records);
-        SalesRecord bestMonth = SalesAnalyzerService.getBestMonth(records);
-        SalesRecord worstMonth = SalesAnalyzerService.getWorstMonth(records);
+        Optional<SalesRecord> bestMonth = SalesAnalyzerService.getBestMonth(records);
+        Optional<SalesRecord> worstMonth = SalesAnalyzerService.getWorstMonth(records);
 
 		
-		  SalesReportGeneratorService.printYearlyReport(modelName, yearlySales);
-		  SalesReportGeneratorService.printBestAndWorstMonth(modelName, bestMonth,
-		  worstMonth);
+        bestMonth.ifPresent(bMonth -> worstMonth.ifPresent(wMonth ->
+        SalesReportGeneratorService.printBestAndWorstMonth(modelName, bMonth, wMonth)
+    ));
 		 
     }
 }
