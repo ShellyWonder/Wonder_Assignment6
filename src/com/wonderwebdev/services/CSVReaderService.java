@@ -1,15 +1,20 @@
 package com.wonderwebdev.services;
 
 import com.wonderwebdev.domain.SalesRecord;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
 
 public class CSVReaderService {
 	public List<SalesRecord> readRecordsFromFile(Path path) throws IOException {
 		List<SalesRecord> records = new ArrayList<>();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
 	try {		
 	
 		List<String> data = Files.readAllLines(path);
@@ -18,7 +23,8 @@ public class CSVReaderService {
             String[] recordData = lineOfData.split(",");
             if (recordData.length == 2) {
                 try {
-                    SalesRecord record = new SalesRecord(recordData[0], Integer.parseInt(recordData[1]));
+                	YearMonth yearMonth = YearMonth.from(LocalDate.parse(recordData[0], formatter));
+                    SalesRecord record = new SalesRecord(yearMonth, Integer.parseInt(recordData[1]));
                     records.add(record);
                 } catch (NumberFormatException e) {
                     System.out.println("Error parsing sales data for record: " + lineOfData);

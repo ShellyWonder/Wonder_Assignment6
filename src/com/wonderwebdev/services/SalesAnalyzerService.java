@@ -6,16 +6,15 @@ import java.util.stream.Collectors;
 import java.util.Optional;
 import java.util.Comparator;
 
+import java.time.YearMonth;
+
 import com.wonderwebdev.domain.SalesRecord;
 
 public class SalesAnalyzerService {
 	
-	public static Map<Integer, Integer> getYearlySales(List<SalesRecord> records) {
+	public static Map<YearMonth, Integer> getYearlySales(List<SalesRecord> records) {
         return records.stream()
-            .collect(Collectors.groupingBy(
-                record -> Integer.parseInt(record.getDate().split("-")[0]),  // Extract year from date
-                Collectors.summingInt(SalesRecord::getSales)  // Summing up the sales
-            ));
+        		.collect(Collectors.groupingBy(SalesRecord::getDate, Collectors.summingInt(SalesRecord::getSales)));
     }
 
 	public static Optional<SalesRecord> getBestMonth(List<SalesRecord> records) {

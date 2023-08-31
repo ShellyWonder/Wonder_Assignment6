@@ -1,22 +1,24 @@
 package com.wonderwebdev.domain;
 
+import java.time.YearMonth;
+
 public class SalesRecord {
 
-	private String date;
+	private YearMonth date;
 	private int sales;
 
-	public SalesRecord(String date, int sales) {
+	public SalesRecord(YearMonth date, int sales) {
 		super();
 
 		this.date = date;
 		this.sales = sales;
 	}
 
-	public String getDate() {
+	public YearMonth getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(YearMonth date) {
 		this.date = date;
 	}
 
