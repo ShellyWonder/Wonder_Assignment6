@@ -11,10 +11,11 @@ import java.nio.file.Path;
 public class CSVReaderService {
     public static Optional<List<SalesRecord>> readCSV(Path path) {
         List<SalesRecord> records = new ArrayList<>();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("MMM-dd");
         SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM");
         
         try (BufferedReader br = new BufferedReader(new FileReader(path.toFile()))) {
+        	br.readLine();
             String line;
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
