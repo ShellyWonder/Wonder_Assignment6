@@ -7,6 +7,7 @@ import com.wonderwebdev.domain.SalesRecord;
 public class SalesReportGeneratorService {
 
     public static void printYearlyReport(String modelName, Map<Integer, Integer> yearlySales) {
+    	System.out.println("---------------------------");
         System.out.println(modelName + " Yearly Sales Report");
         System.out.println("---------------------------");
         yearlySales.forEach((year, sales) -> {
