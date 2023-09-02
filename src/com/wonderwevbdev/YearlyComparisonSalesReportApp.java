@@ -1,7 +1,7 @@
 package com.wonderwevbdev;
 
 import java.util.List;
-import java.time.YearMonth;
+import java.time.LocalDate;
 import java.io.IOException;
 import java.util.Map;
 
@@ -24,7 +24,7 @@ public class YearlyComparisonSalesReportApp {
 	}
 
 	public static void processSalesData(String modelName, List<SalesRecord> records) {
-		Map<YearMonth, Integer> yearlySales = SalesAnalyzerService.getYearlySales(records);
+		Map<LocalDate, Integer> yearlySales = SalesAnalyzerService.getYearlySales(records);
 		Optional<SalesRecord> bestMonth = SalesAnalyzerService.getBestMonth(records);
 		Optional<SalesRecord> worstMonth = SalesAnalyzerService.getWorstMonth(records);
 

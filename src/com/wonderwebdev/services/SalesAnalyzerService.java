@@ -6,13 +6,13 @@ import java.util.stream.Collectors;
 import java.util.Optional;
 import java.util.Comparator;
 
-import java.time.YearMonth;
+import java.time.LocalDate;
 
 import com.wonderwebdev.domain.SalesRecord;
 
 public class SalesAnalyzerService {
 	
-	public static Map<YearMonth, Integer> getYearlySales(List<SalesRecord> records) {
+	public static Map<LocalDate, Integer> getYearlySales(List<SalesRecord> records) {
         return records.stream()
         		.collect(Collectors.groupingBy(SalesRecord::getDate, Collectors.summingInt(SalesRecord::getSales)));
     }

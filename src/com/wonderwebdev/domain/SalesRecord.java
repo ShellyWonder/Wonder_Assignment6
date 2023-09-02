@@ -1,24 +1,24 @@
 package com.wonderwebdev.domain;
 
-import java.time.YearMonth;
+import java.time.LocalDate;
 
 public class SalesRecord {
 
-	private YearMonth date;
+	private LocalDate date;
 	private int sales;
 
-	public SalesRecord(YearMonth date, int sales) {
+	public SalesRecord(LocalDate date, int sales) {
 		super();
 
 		this.date = date;
 		this.sales = sales;
 	}
 
-	public YearMonth getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(YearMonth date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
